@@ -30,9 +30,42 @@ NaoJointChain::NaoJointChain ( std::string name ) : _chainName ( name ) {
 
     _motion = ALBrokerWrapper::Instance().GetBroker()->getMotionProxy();
 
-    _jointNames = _motion->getBodyJointNames (); //TODO
+    std::vector<std::string> allJointNames = _motion->getBodyJointNames ();
 
-    std::vector<std::string>::const_iterator it;
+    bool isAcademic = allJointNames.size() > 22 ? true : false;
+
+    std::vector<std::string>::const_iterator it = allJointNames.begin();
+
+    /// Joint's order is clockwise, starting from the head
+
+    const unsigned HeadIdx = 0;
+    const unsigned HeadSize = 2;
+
+    const unsigned LArmIdx = HeadIdx + HeadSize;
+    const unsigned ArmSize = isAcademic ? 6 : 4;
+
+    const unsigned LLegIdx = LArmIdx + ArmSize;
+    const unsigned LegSize = 6;
+
+    const unsigned RLegIdx = LLegIdx + LegSize;
+
+    const unsigned RArmIdx = RLegIdx + LegSize;
+
+
+    if ( _chainName == "Head" )
+        _jointNames.assign ( it + HeadIdx, it + HeadIdx + HeadSize );
+    else if ( _chainName == "LArm" )
+        _jointNames.assign ( it + LArmIdx, it + LArmIdx + ArmSize );
+    else if ( _chainName == "LLeg" )
+        _jointNames.assign ( it + LLegIdx, it + LLegIdx + LegSize );
+    else if ( _chainName == "RLeg" )
+        _jointNames.assign ( it + RLegIdx, it + RLegIdx + LegSize );
+    else if ( _chainName == "RArm" )
+        _jointNames.assign ( it + RArmIdx, it + RArmIdx + ArmSize );
+    else
+        std::cerr << "Joint Chain " << *it << " not found!" << std::endl;
+
+
 
     for ( it = _jointNames.begin(); it < _jointNames.end(); it++ )
         _joints.push_back ( boost::shared_ptr<NaoJoint> ( new NaoJoint ( *it ) ) );
