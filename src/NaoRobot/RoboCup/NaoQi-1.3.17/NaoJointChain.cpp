@@ -36,7 +36,7 @@ NaoJointChain::NaoJointChain ( std::string name ) : _chainName ( name ) {
 
     std::vector<std::string>::const_iterator it = allJointNames.begin();
 
-    /// Joint's order is clockwise, starting from the head
+    // Joint's order is clockwise, starting from the head
 
     const unsigned HeadIdx = 0;
     const unsigned HeadSize = 2;
@@ -153,23 +153,23 @@ void NaoJointChain::ChangeAngleBlock ( std::vector<float>& angle, float speed ) 
 
 }
 
-//
-//
-//
-// std::vector<float> NaoJointChain::GetStiffness ( ) {
-//
-//     return _motion->getStiffnesses ( _chainName );
-//
-// }
-//
-//
-//
-//
-// void NaoJointChain::SetStiffness ( std::vector<float>& stiffness ) {
-//
-//     _motion->stiffnessInterpolation ( _chainName, stiffness, 0.1f );
-//
-// }
+
+
+
+std::vector<float> NaoJointChain::GetStiffness ( ) {
+
+    return _motion->getChainStiffnesses ( _chainName );
+
+}
+
+
+
+
+void NaoJointChain::SetStiffness ( std::vector<float>& stiffness ) {
+
+    _motion->setJointStiffnesses ( _jointNames, stiffness );
+
+}
 
 
 
