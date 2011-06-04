@@ -16,6 +16,13 @@
 #include "YarpJointDev.h"
 
 
+#include "NaoInertial.h"
+#include "YarpAcc.h"
+#include "YarpGyro.h"
+#include "YarpFSR.h"
+#include "YarpSonar.h"
+
+
 /**
  * Constructor for NaoYARPModule object
  * @param broker The parent broker
@@ -32,28 +39,37 @@ NaoYARPModule::NaoYARPModule(
   addParam("foo", "A second parameter parameter. An AL::ALValue that will be returned.");
   setReturn("return", "Returns the foo parameter");
   BIND_METHOD(NaoYARPModule::dummyFunction);
-  
+
   ALBrokerWrapper::Instance().SetBroker( broker );
-  
-  
+
+
 
   boost::shared_ptr<NaoJointChain> c ( new NaoJointChain("LArm"));
   YarpJointDev b(c);
-  
+
   usleep(1000000);
-  
-  
+
+
   bool res = b.setImpedance(1,1.0f,0,0);
-  
+
   usleep(1000000);
 
   res &= b.positionMove(1,1.1f);
-  
+
   usleep(1000000);
-  
+
   res &= b.setImpedance(1,0.0f,0,0);
 
-  
+  boost::shared_ptr<NaoInertial> iner ( new NaoInertial );
+
+  YarpAcc acc(iner);
+  YarpGyro gyr(iner);
+  YarpFSR fsr(iner);
+  YarpSonar sonar(iner);
+
+
+
+
 }
 
 /**
