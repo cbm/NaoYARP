@@ -8,6 +8,7 @@ include( "./naoyarp/bootstrap.cmake" )
 add_library( LibNaoRoboCup SHARED NaoJoint.cpp
 				  NaoJointChain.cpp
 				  NaoInertial.cpp
+				  NaoCam.cpp
 )
 
 use_lib(LibNaoRoboCup ALCOMMON)
