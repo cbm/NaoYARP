@@ -33,6 +33,10 @@ class YarpCam
             public yarp::dev::IFrameGrabberControls {
 
 
+
+public:
+
+
     YarpCam(boost::shared_ptr<NaoCam> camera);
 
     ~YarpCam();
@@ -109,7 +113,7 @@ class YarpCam
      */
 
     virtual double getGamma() {
-      return 0.0f;
+        return 0.0f;
     }
 
 
@@ -130,8 +134,8 @@ class YarpCam
      * @note Method not implemented.
      */
 
-    virtual double getIris(){
-      return 0.0f;
+    virtual double getIris() {
+        return 0.0f;
     }
 
 
@@ -161,8 +165,8 @@ class YarpCam
      * @note Method not implemented.
      */
 
-    virtual double getShutter(){
-      return 0.0f;
+    virtual double getShutter() {
+        return 0.0f;
     }
 
 
@@ -217,7 +221,7 @@ class YarpCam
      */
 
     virtual bool setGamma ( double v ) {
-      return false;
+        return false;
     }
 
 
@@ -241,7 +245,7 @@ class YarpCam
      */
 
     virtual bool setIris ( double v ) {
-      return false;
+        return false;
     }
 
 
@@ -275,7 +279,7 @@ class YarpCam
      */
 
     virtual bool setShutter ( double v ) {
-      return false;
+        return false;
     }
 
 
@@ -289,9 +293,9 @@ class YarpCam
 
     virtual bool setWhiteBalance ( double blue, double red );
 
-	    private:
+private:
 
-	      boost::shared_ptr<NaoCam> _camera;
+    boost::shared_ptr<NaoCam> _camera;
 
 
 

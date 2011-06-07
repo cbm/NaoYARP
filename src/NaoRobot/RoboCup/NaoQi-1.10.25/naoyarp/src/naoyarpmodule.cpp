@@ -22,6 +22,8 @@
 #include "YarpFSR.h"
 #include "YarpSonar.h"
 
+#include "YarpCam.h"
+
 
 /**
  * Constructor for NaoYARPModule object
@@ -66,6 +68,25 @@ NaoYARPModule::NaoYARPModule(
   YarpGyro gyr(iner);
   YarpFSR fsr(iner);
   YarpSonar sonar(iner);
+
+  boost::shared_ptr<NaoCam> theCam ( new NaoCam );
+  YarpCam yCam (theCam);
+
+  std::cout << "Gain is: "<<yCam.getGain() << std::endl;
+
+
+
+  int count = 10;
+  while ( count-- ) {
+    yarp::sig::Vector res;
+    acc.read(res);
+     std::cout << "Acc values are: ";
+    for ( int i = 0; i < res.size(); ++i )
+          std::cout << res[i] <<" ";
+    std::cout << std::endl;
+    usleep(400000);
+  }
+
 
 
 
