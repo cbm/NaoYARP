@@ -23,6 +23,7 @@
 
 #include <yarp/dev/DeviceDriver.h>
 #include <yarp/dev/FrameGrabberInterfaces.h>
+#include <yarp/sig/Image.h>
 
 #include "NaoCam.h"
 
@@ -37,11 +38,9 @@ class YarpCam
 public:
 
 
-    YarpCam(boost::shared_ptr<NaoCam> camera);
+    YarpCam();
 
     ~YarpCam();
-
-    virtual bool configure ( yarp::os::Searchable& config );
 
     virtual bool open ( yarp::os::Searchable& config );
 

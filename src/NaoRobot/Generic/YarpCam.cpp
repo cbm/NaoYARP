@@ -20,7 +20,7 @@
 
 #include "YarpCam.h"
 
-YarpCam::YarpCam ( boost::shared_ptr<NaoCam> camera ) : _camera ( camera ) {
+YarpCam::YarpCam ()  {
     ;
 }
 
@@ -29,12 +29,12 @@ YarpCam::~YarpCam() {
 }
 
 
-bool YarpCam::configure ( yarp::os::Searchable& config ) {
-    return yarp::os::IConfig::configure ( config );
-}
-
 bool YarpCam::open ( yarp::os::Searchable& config ) {
-    return yarp::dev::DeviceDriver::open ( config );
+
+    _camera = boost::shared_ptr<NaoCam> ( new NaoCam );
+    _camera->ConfigureVIM(NaoCam::yQQVGA,NaoCam::yRGBColorSpace);
+
+    return true;
 }
 
 bool YarpCam::close() {
@@ -43,6 +43,16 @@ bool YarpCam::close() {
 
 
 bool YarpCam::getImage ( yarp::sig::ImageOf< yarp::sig::PixelRgb >& image ) {
+
+    char* buffer;
+    unsigned size;
+
+    if ( !_camera->GetImage ( &buffer, size ) )
+        return false;
+
+    image.setExternal(buffer,width(),height());
+
+    return true;
 
 }
 
@@ -142,25 +152,3 @@ bool YarpCam::setWhiteBalance ( double blue, double red ) {
     return _camera->SetCamProp ( NaoCam::yCameraBlueChromaID, blue ) &&
            _camera->SetCamProp ( NaoCam::yCameraRedChromaID, red );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
