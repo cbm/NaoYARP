@@ -24,7 +24,9 @@
 #include <yarp/dev/DeviceDriver.h>
 #include <yarp/dev/GenericSensorInterfaces.h>
 
-#include "NaoInertial.h"
+#include <boost/shared_ptr.hpp>
+
+#include "NaoRobot/NaoInertial.h"
 
 class YarpFSR:
             public yarp::dev::DeviceDriver,

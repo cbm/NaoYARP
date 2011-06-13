@@ -24,7 +24,7 @@
 #include <yarp/dev/ControlBoardInterfaces.h>
 #include <yarp/dev/CartesianControl.h>
 
-#include "NaoJointChain.h"
+#include "NaoRobot/NaoJointChain.h"
 #include <boost/smart_ptr.hpp>
 
 

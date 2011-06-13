@@ -5,12 +5,12 @@ message ( STATUS "" )
 include( "./naoyarp/bootstrap.cmake" )
 
 
-add_library( LibNaoRoboCup SHARED NaoJoint.cpp
-				  NaoJointChain.cpp
-				  NaoInertial.cpp
-				  NaoCam.cpp
+add_library( LibNaoQi_1_10_25 SHARED NaoJoint.cpp
+				     NaoJointChain.cpp
+				     NaoInertial.cpp
+				     NaoCam.cpp
 )
 
-use_lib(LibNaoRoboCup ALCOMMON)
+use_lib(LibNaoQi_1_10_25 ALCOMMON)
 
 add_subdirectory(naoyarp)

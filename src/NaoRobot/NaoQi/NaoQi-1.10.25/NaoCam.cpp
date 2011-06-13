@@ -18,7 +18,7 @@
 */
 
 
-#include "NaoCam.h"
+#include "NaoRobot/NaoCam.h"
 #include "NaoRobot/ALBrokerWrapperClass.h"
 
 #include <alcommon/alproxy.h>

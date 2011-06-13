@@ -62,7 +62,7 @@ INCLUDE_DIRECTORIES( ${PROXIES_INCLUDE_DIR} ${ALCOMMON_INCLUDE_DIR} ${PTHREAD_IN
 
 
 
-add_library( LibNaoRoboCup SHARED NaoJoint.cpp NaoJointChain.cpp )
+add_library( LibNaoQi_1_3_17 SHARED NaoJoint.cpp NaoJointChain.cpp )
 
 #use_lib(LibNaoRoboCup ALCOMMON)
 

@@ -11,7 +11,7 @@
 #include <alcommon/almodule.h>
 #include <string>
 
-#include "DeviceManager.h"
+#include "YarpDev/DeviceManager.h"
 
 namespace AL {
 

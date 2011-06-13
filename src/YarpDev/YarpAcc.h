@@ -18,28 +18,27 @@
 */
 
 
-#ifndef YARPSONAR_H
-#define YARPSONAR_H
+#ifndef YARPACC_H
+#define YARPACC_H
 
 #include <yarp/dev/DeviceDriver.h>
 #include <yarp/dev/GenericSensorInterfaces.h>
 
-#include "NaoInertial.h"
+#include "NaoRobot/NaoInertial.h"
 
-class YarpSonar:
+class YarpAcc:
             public yarp::dev::DeviceDriver,
             public yarp::dev::IGenericSensor {
 
 public:
 
-    YarpSonar ();
+    YarpAcc ();
 
-    virtual ~YarpSonar();
+    virtual ~YarpAcc();
 
     virtual bool open ( yarp::os::Searchable& config );
 
     virtual bool close();
-
 
 
     /**
@@ -58,9 +57,10 @@ public:
 
 
 
+
     /**
      * Get the number of channels of the sensor.
-     * (2D vector: left and right values).
+     * Three accelerometer channels are expected.
      *
      * @param nc pointer to storage, return value
      * @return true iff all channels are available.
@@ -72,7 +72,7 @@ public:
 
     /**
      * Read a vector from the sensor. If successive,
-     * a 2D vector (left and right values) is returned.
+     * three values are stored (x,y,z), else returns false.
      *
      * @param out a vector containing the sensor's last readings.
      * @return true iff all channels are available.
@@ -89,4 +89,4 @@ private:
 
 };
 
-#endif // YARPSONAR_H
+#endif // YARPACC_H

@@ -18,27 +18,30 @@
 */
 
 
-#ifndef YARPACC_H
-#define YARPACC_H
+#ifndef YARPGYRO_H
+#define YARPGYRO_H
 
 #include <yarp/dev/DeviceDriver.h>
 #include <yarp/dev/GenericSensorInterfaces.h>
 
-#include "NaoInertial.h"
+#include <boost/shared_ptr.hpp>
 
-class YarpAcc:
+#include "NaoRobot/NaoInertial.h"
+
+class YarpGyro:
             public yarp::dev::DeviceDriver,
             public yarp::dev::IGenericSensor {
 
 public:
 
-    YarpAcc ();
+    YarpGyro ();
 
-    virtual ~YarpAcc();
+    virtual ~YarpGyro();
 
     virtual bool open ( yarp::os::Searchable& config );
 
     virtual bool close();
+
 
 
     /**
@@ -57,10 +60,9 @@ public:
 
 
 
-
     /**
      * Get the number of channels of the sensor.
-     * Three accelerometer channels are expected.
+     * Three gyro channels are expected.
      *
      * @param nc pointer to storage, return value
      * @return true iff all channels are available.
@@ -89,4 +91,4 @@ private:
 
 };
 
-#endif // YARPACC_H
+#endif // YARPGYRO_H

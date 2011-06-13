@@ -17,7 +17,7 @@
 */
 
 
-#include "NaoRobot/YarpJointDev.h"
+#include "YarpJointDev.h"
 
 #include <iostream>
 

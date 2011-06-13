@@ -13,7 +13,7 @@
 
 #include "NaoRobot/ALBrokerWrapperClass.h"
 #include "NaoJointChain.h"
-#include "YarpJointDev.h"
+#include "YarpDev/YarpJointDev.h"
 
 using namespace AL;
 

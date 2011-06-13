@@ -18,23 +18,25 @@
 */
 
 
-#ifndef YARPGYRO_H
-#define YARPGYRO_H
+#ifndef YARPSONAR_H
+#define YARPSONAR_H
 
 #include <yarp/dev/DeviceDriver.h>
 #include <yarp/dev/GenericSensorInterfaces.h>
 
-#include "NaoInertial.h"
+#include <boost/shared_ptr.hpp>
 
-class YarpGyro:
+#include "NaoRobot/NaoInertial.h"
+
+class YarpSonar:
             public yarp::dev::DeviceDriver,
             public yarp::dev::IGenericSensor {
 
 public:
 
-    YarpGyro ();
+    YarpSonar ();
 
-    virtual ~YarpGyro();
+    virtual ~YarpSonar();
 
     virtual bool open ( yarp::os::Searchable& config );
 
@@ -60,7 +62,7 @@ public:
 
     /**
      * Get the number of channels of the sensor.
-     * Three gyro channels are expected.
+     * (2D vector: left and right values).
      *
      * @param nc pointer to storage, return value
      * @return true iff all channels are available.
@@ -72,7 +74,7 @@ public:
 
     /**
      * Read a vector from the sensor. If successive,
-     * three values are stored (x,y,z), else returns false.
+     * a 2D vector (left and right values) is returned.
      *
      * @param out a vector containing the sensor's last readings.
      * @return true iff all channels are available.
@@ -89,4 +91,4 @@ private:
 
 };
 
-#endif // YARPGYRO_H
+#endif // YARPSONAR_H

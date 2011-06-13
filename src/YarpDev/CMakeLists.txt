@@ -1,5 +1,5 @@
 
-add_library ( LibGeneric SHARED YarpJointDev.cpp
+add_library ( LibYarpDev SHARED YarpJointDev.cpp
 				YarpAcc.cpp
 				YarpGyro.cpp
 				YarpFSR.cpp
@@ -8,4 +8,4 @@ add_library ( LibGeneric SHARED YarpJointDev.cpp
 				DeviceManager.cpp
 )
 
-target_link_libraries( LibGeneric ${YARP_LIBRARIES} )
+target_link_libraries( LibYarpDev ${YARP_LIBRARIES} )

@@ -16,5 +16,5 @@ configure_src_module( naoyarp ${NAOYARP_SRCS} )
 
 use_lib(naoyarp ALCOMMON)
 
-target_link_libraries(naoyarp LibNaoRoboCup LibGeneric)
+target_link_libraries(naoyarp LibNaoQi_1_10_25 LibYarpDev)
 

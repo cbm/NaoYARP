@@ -60,7 +60,7 @@ ENDIF( NAOYARP_IS_REMOTE STREQUAL "OFF" )
 ############################ SET LIBRARIES TO LINK WITH
 TARGET_LINK_LIBRARIES( naoyarp ${ALCOMMON_LIBRARIES} ${PTHREAD_LIBRARIES} ${NEWMAT_LIBRARIES}  ${TINYXML_LIBRARIES} ${BOOST_LIBRARIES})
 
-target_link_libraries( naoyarp LibNaoRoboCup LibGeneric)
+target_link_libraries( naoyarp LibNaoQi_1_3_17 LibYarpDev)
 
 ############################ BINARY COPY
 # copy binaries in the output folder automatically

@@ -25,7 +25,9 @@
 #include <yarp/dev/FrameGrabberInterfaces.h>
 #include <yarp/sig/Image.h>
 
-#include "NaoCam.h"
+#include <boost/shared_ptr.hpp>
+
+#include "NaoRobot/NaoCam.h"
 
 class YarpCam
             :
