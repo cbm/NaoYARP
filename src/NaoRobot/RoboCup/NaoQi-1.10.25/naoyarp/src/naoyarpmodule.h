@@ -11,22 +11,25 @@
 #include <alcommon/almodule.h>
 #include <string>
 
-namespace AL
-{
-  class ALBroker;
+#include "DeviceManager.h"
+
+namespace AL {
+
+class ALBroker;
 }
 
 /**
  * DESCRIBE YOUR CLASS HERE
  */
-class NaoYARPModule : public AL::ALModule
-{
-  public:
+
+class NaoYARPModule : public AL::ALModule {
+
+public:
 
     /**
      * Default Constructor.
      */
-     NaoYARPModule(AL::ALPtr<AL::ALBroker> broker, const std::string& name);
+    NaoYARPModule ( AL::ALPtr<AL::ALBroker> broker, const std::string& name );
 
     /**
      * Destructor.
@@ -39,7 +42,10 @@ class NaoYARPModule : public AL::ALModule
      * @param foo The method will return this parameter
      * @return The AL::ALValue sent as the foo parameter
      */
-    AL::ALValue dummyFunction(const std::string& msg, const AL::ALValue& foo);
+    AL::ALValue dummyFunction ( const std::string& msg, const AL::ALValue& foo );
+
+private:
+    DeviceManager* dev;
 };
 
 #endif  // NAOYARP_NAOYARPMODULE_H
