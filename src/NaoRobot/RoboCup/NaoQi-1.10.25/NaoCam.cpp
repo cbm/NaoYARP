@@ -32,8 +32,8 @@ NaoCam::NaoCam() : _isConfigured ( false ),
         _imgHeight ( -1 ) {
 
     _videoProxy = boost::shared_ptr<AL::ALVideoDeviceProxy> (
-    new AL::ALVideoDeviceProxy (
-        ALBrokerWrapper::Instance().GetBroker() ) );
+                      new AL::ALVideoDeviceProxy (
+                          ALBrokerWrapper::Instance().GetBroker() ) );
 
 }
 
@@ -50,7 +50,7 @@ NaoCam::~NaoCam() {
 
 
 
-bool NaoCam::ConfigureVIM ( CamRes& res, CamColSp& clsp ) {
+bool NaoCam::ConfigureVIM ( CamRes res, CamColSp clsp ) {
 
     if ( _isConfigured ) {
         _videoProxy->unsubscribe ( _gvmName );
@@ -118,6 +118,32 @@ bool NaoCam::ConfigureVIM ( CamRes& res, CamColSp& clsp ) {
 
 
 
+bool NaoCam::GetImage ( char** image, unsigned& size ) {
+
+    if ( ! _isConfigured )
+        return false;
+
+    static AL::ALValue img;
+
+    img.clear();
+
+    img = _videoProxy->getImageRemote ( _gvmName );
+
+    _imgWidth = ( int ) img[0];
+
+    _imgHeight = ( int ) img[1];
+
+    int nChannels = ( int ) img[2];
+
+    size = _imgWidth * _imgHeight * nChannels;
+
+    *image = ( char* ) ( img[6].GetBinary() );
+
+    return true;
+}
+
+
+
 bool NaoCam::GetImageWidth ( int& width ) {
 
     if ( ! _isConfigured )
@@ -166,7 +192,7 @@ bool NaoCam::GetCamProp ( CamParam prop, double& value ) {
 
     try {
         val = _videoProxy->getParam ( id );
-	ConvertFromNaoQi(prop,val,value);
+        ConvertFromNaoQi ( prop, val, value );
     }
     catch ( ... ) {
         return false;

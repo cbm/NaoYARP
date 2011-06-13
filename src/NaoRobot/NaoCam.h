@@ -72,7 +72,17 @@ public:
      * @return true/false on success/failure.
      */
 
-    bool ConfigureVIM ( CamRes& res, CamColSp& clsp );
+    bool ConfigureVIM ( CamRes res, CamColSp clsp );
+
+
+
+    /**
+     * Returns an image from the camera. The VIM should be
+     * configured first.
+     *
+     */
+
+    bool GetImage ( char** image, unsigned& size );
 
 
 
