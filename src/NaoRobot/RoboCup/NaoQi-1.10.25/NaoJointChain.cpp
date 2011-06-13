@@ -32,8 +32,8 @@ NaoJointChain::NaoJointChain ( std::string name ) : _chainName ( name ) {
 
     _motion = ALBrokerWrapper::Instance().GetBroker()->getMotionProxy();
 
-    _jointNames = _motion->getJointNames ( _chainName );    
-    
+    _jointNames = _motion->getJointNames ( _chainName );
+
     std::vector<std::string>::const_iterator it;
     for ( it = _jointNames.begin(); it < _jointNames.end(); it++ )
       _joints.push_back( boost::shared_ptr<NaoJoint> (new NaoJoint (*it) ) );
@@ -57,7 +57,7 @@ std::vector<float> NaoJointChain::GetCurrentAngles () {
 
 
 unsigned NaoJointChain::GetNumberOfJoints () {
-  
+
     return _jointNames.size();
 
 }
@@ -65,9 +65,9 @@ unsigned NaoJointChain::GetNumberOfJoints () {
 
 
 boost::shared_ptr<NaoJoint> NaoJointChain::GetSpecificJoint ( unsigned i ) {
-    
+
     return _joints.at(i);
-    
+
 }
 
 
@@ -158,8 +158,8 @@ bool NaoJointChain::WaitForPostedMotions ( float timeout ) {
 
 
 boost::shared_ptr<NaoJoint> NaoJointChain::operator[] ( unsigned i ) {
-  
+
   return this->GetSpecificJoint(i);
-  
+
 }
 
