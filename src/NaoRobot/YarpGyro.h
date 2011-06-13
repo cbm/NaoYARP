@@ -32,7 +32,7 @@ class YarpGyro:
 
 public:
 
-    YarpGyro ( boost::shared_ptr<NaoInertial> inertial );
+    YarpGyro ();
 
     virtual ~YarpGyro();
 

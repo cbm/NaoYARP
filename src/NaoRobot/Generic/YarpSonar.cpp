@@ -24,8 +24,7 @@
 
 
 
-YarpSonar::YarpSonar ( boost::shared_ptr< NaoInertial > inertial ) :
-        _inertial ( inertial ), _expValues ( 2 ) {
+YarpSonar::YarpSonar () : _expValues ( 2 ) {
     ;
 }
 
@@ -38,7 +37,10 @@ YarpSonar::~YarpSonar() {
 
 
 bool YarpSonar::open ( yarp::os::Searchable& config ) {
-    return yarp::dev::DeviceDriver::open ( config );
+
+    _inertial = boost::shared_ptr<NaoInertial> ( new NaoInertial );
+
+    return true;
 }
 
 

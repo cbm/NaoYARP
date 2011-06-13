@@ -32,7 +32,7 @@ class YarpAcc:
 
 public:
 
-    YarpAcc ( boost::shared_ptr<NaoInertial> inertial );
+    YarpAcc ();
 
     virtual ~YarpAcc();
 

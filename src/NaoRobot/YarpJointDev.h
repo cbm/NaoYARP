@@ -38,11 +38,9 @@ class YarpJointDev :
 
 public:
 
-    YarpJointDev ( boost::shared_ptr<NaoJointChain> chain );
+    YarpJointDev ();
 
-    virtual ~YarpJointDev() {
-        ;
-    }
+    virtual ~YarpJointDev();
 
     virtual bool open ( yarp::os::Searchable& config );
 

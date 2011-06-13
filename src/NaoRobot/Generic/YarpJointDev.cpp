@@ -23,18 +23,36 @@
 
 #include <cmath>
 
-YarpJointDev::YarpJointDev ( boost::shared_ptr< NaoJointChain > chain )
-        :	_chain ( chain ) {
+
+
+YarpJointDev::YarpJointDev ()  {
+    ;
+}
+
+
+
+YarpJointDev::~YarpJointDev () {
+    ;
+}
+
+
+
+bool YarpJointDev::open ( yarp::os::Searchable& config ) {
+
+    yarp::os::Value partName = config.find ( "part" );
+
+    if ( partName.isNull() || !partName.isString() )
+        return false;
+
+    _chain = boost::shared_ptr<NaoJointChain> (
+                 new NaoJointChain ( std::string ( partName.asString() ) ) );
 
     /// Initializing trajectory speeds to max speed.
     for ( unsigned i = 0; i < _chain->GetNumberOfJoints(); ++i )
         _refSpeeds.push_back ( 1.0f );
 
     _maxRefSpeed = 1.0f;
-}
 
-
-bool YarpJointDev::open ( yarp::os::Searchable& config ) {
     return true;
 }
 
@@ -386,11 +404,11 @@ bool YarpJointDev::waitMotionDone ( const double period, const double timeout ) 
 
 void YarpJointDev::AxisAngle_To_Euler ( const float& x, const float& y, const float& z, const float& theta,
                                         float& wx, float& wy, float& wz ) {
-  
-  /**
-   * @note Source:
-   * http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToEuler/index.htm
-   */
+
+    /**
+     * @note Source:
+     * http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToEuler/index.htm
+     */
 
     double heading;
     double attitude;

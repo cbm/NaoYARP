@@ -32,7 +32,7 @@ class YarpFSR:
 
 public:
 
-    YarpFSR ( boost::shared_ptr<NaoInertial> inertial );
+    YarpFSR ();
 
     virtual ~YarpFSR();
 

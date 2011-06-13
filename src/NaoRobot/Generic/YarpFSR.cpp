@@ -24,8 +24,7 @@
 
 
 
-YarpFSR::YarpFSR ( boost::shared_ptr< NaoInertial > inertial ) :
-        _inertial ( inertial ), _expValues ( 8 ) {
+YarpFSR::YarpFSR () : _expValues ( 8 ) {
     ;
 }
 
@@ -38,7 +37,10 @@ YarpFSR::~YarpFSR() {
 
 
 bool YarpFSR::open ( yarp::os::Searchable& config ) {
-    return yarp::dev::DeviceDriver::open ( config );
+
+    _inertial = boost::shared_ptr<NaoInertial> ( new NaoInertial );
+
+    return true;
 }
 
 

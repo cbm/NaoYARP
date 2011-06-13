@@ -24,8 +24,7 @@
 
 
 
-YarpGyro::YarpGyro ( boost::shared_ptr< NaoInertial > inertial ) :
-        _inertial ( inertial ), _expValues ( 3 ) {
+YarpGyro::YarpGyro () : _expValues ( 3 ) {
     ;
 }
 
@@ -38,7 +37,10 @@ YarpGyro::~YarpGyro() {
 
 
 bool YarpGyro::open ( yarp::os::Searchable& config ) {
-    return yarp::dev::DeviceDriver::open ( config );
+
+    _inertial = boost::shared_ptr<NaoInertial> ( new NaoInertial );
+
+    return true;
 }
 
 

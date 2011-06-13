@@ -32,7 +32,7 @@ class YarpSonar:
 
 public:
 
-    YarpSonar ( boost::shared_ptr<NaoInertial> inertial );
+    YarpSonar ();
 
     virtual ~YarpSonar();
 
