@@ -53,7 +53,7 @@ bool YarpGyro::close() {
 
 bool YarpGyro::getChannels ( int* nc ) {
     *nc = _inertial->GetGyrValues().size();
-    return *nc == _expValues;
+    return ( ( int ) *nc ) == _expValues;
 }
 
 
@@ -64,6 +64,6 @@ bool YarpGyro::read ( yarp::sig::Vector& out ) {
 
     out = Conv::StdVecToYarpVec<> ( _inertial->GetGyrValues() );
 
-    return out.size() == _expValues;
+    return ( ( int ) out.size() ) == _expValues;
 
 }

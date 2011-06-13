@@ -53,7 +53,7 @@ bool YarpSonar::close() {
 
 bool YarpSonar::getChannels ( int* nc ) {
     *nc = _inertial->GetUltraSoundValues().size();
-    return *nc == _expValues;
+    return ( ( int ) *nc ) == _expValues;
 }
 
 
@@ -63,5 +63,5 @@ bool YarpSonar::read ( yarp::sig::Vector& out ) {
 
     out = Conv::StdVecToYarpVec<> ( _inertial->GetUltraSoundValues() );
 
-    return out.size() == _expValues;
+    return ( ( int ) out.size() ) == _expValues;
 }

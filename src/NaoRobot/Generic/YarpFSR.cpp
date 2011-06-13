@@ -53,7 +53,7 @@ bool YarpFSR::close() {
 
 bool YarpFSR::getChannels ( int* nc ) {
     *nc = _inertial->GetFSRValues().size();
-    return *nc == _expValues;
+    return ( ( int ) *nc ) == _expValues;
 }
 
 
@@ -63,5 +63,5 @@ bool YarpFSR::read ( yarp::sig::Vector& out ) {
 
     out = Conv::StdVecToYarpVec<> ( _inertial->GetFSRValues() );
 
-    return out.size() == _expValues;
+    return ( ( int ) out.size() ) == _expValues;
 }

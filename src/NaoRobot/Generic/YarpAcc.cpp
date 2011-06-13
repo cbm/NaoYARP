@@ -53,7 +53,7 @@ bool YarpAcc::close() {
 
 bool YarpAcc::getChannels ( int* nc ) {
     *nc = _inertial->GetAccValues().size();
-    return *nc == _expValues;
+    return ( ( int ) *nc ) == _expValues;
 }
 
 
@@ -64,7 +64,7 @@ bool YarpAcc::read ( yarp::sig::Vector& out ) {
 
     out = Conv::StdVecToYarpVec<> ( _inertial->GetAccValues() );
 
-    return out.size() == _expValues;
+    return ( ( int ) out.size() ) == _expValues;
 
 }
 
