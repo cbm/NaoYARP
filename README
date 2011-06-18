@@ -1,0 +1,61 @@
+
+
+BUILD (for remote execution)
+
+- Create a folder named build 
+
+- Enter folder build
+
+- Execute: cmake -D CMAKE_TOOLCHAIN_FILE=<your-path-to-naoqi-sdk>/toolchain-pc.cmake ..
+
+- Execute: ccmake .
+
+- Set the path to YARP building directory
+
+- Set the NaoQi version appropriately 
+
+- Check the value of NAOYARP_IS_REMOTE
+
+  NAOYARP_IS_REMOTE can be OFF (a library is produced) or ON (an executable is produced)
+
+- Press c to configure again, then g to generate and exit. 
+
+- Execute: make -jk install, where k is the number of cores in your system.
+
+
+
+
+CROSSBUILD (for on-board execution)
+
+- Create a folder named crossbuild 
+
+- Enter folder crossbuild
+
+- Execute: cmake -D CMAKE_TOOLCHAIN_FILE=<path-to-naoqi-ctc>/toolchain-geode.cmake ..
+
+- Execute: ccmake .
+
+- Set the path to YARP building directory
+
+- Set the NaoQi version appropriately 
+
+- Press c to configure
+
+- Check the values of KROBOT_IS_REMOTE, NaoQiVersion, RobotPlatform 
+
+  KROBOT_IS_REMOTE can be OFF (a library is produced) or ON (an executable is produced)
+
+- Real-time execution for the nao requires the code to be compiled as a shared object at the moment.
+
+- Press c to configure again, then g to generate and exit. 
+
+- Execute: make -jk install, where k is the number of cores in your system. 
+
+
+
+
+Run the created module (it should be under <your-path-to-naoqi-sdk> /bin or /lib on the latest NaoQi versions).
+Network devices are created automatically!
+
+
+That's all! Enjoy! 
