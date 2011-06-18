@@ -52,6 +52,10 @@ CROSSBUILD (for on-board execution)
 - Execute: make -jk install, where k is the number of cores in your system. 
 
 
+Documentation
+
+In-source documentation is created using Doxygen with input the Doc.dox file
+
 
 
 Run the created module (it should be under <your-path-to-naoqi-sdk> /bin or /lib on the latest NaoQi versions).
