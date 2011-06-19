@@ -1,5 +1,82 @@
 
 
+Prerequisites:
+This project requires YARP and ACE libraries. For remote execution, they can be installed
+by binary or source as usual, depending on the computer architecture. 
+For on-board execution, the libraries must be cross-compiled for source, using the following 
+procedure.
+
+
+Cross-Compilation procedure (only for on-board execution)
+
+
+- Download ACE source code from http://download.dre.vanderbilt.edu/
+
+- Untar and in root directory create a build folder
+
+- Source cross compilation script to set CPP flags appropriately
+
+  - Execute: "source cross-compile.sh"
+
+- Enter ACE directory
+
+- Execute: 
+
+   -export ACE_ROOT=`pwd`
+   -ln -s config-linux.h config.h
+   -cd ../include/makeinclude
+   -ln -s platform_linux.GNU platform_macros.GNU
+   -cd ../../ace
+   
+
+- Execute: make 
+
+- Copy lib/* to nao ~/naoqi/lib folder
+  - Execute: scp lib/* nao@<...>:~/naoqi/lib
+
+
+
+
+
+- Download YARP source code from http://sourceforge.net/projects/yarp0/
+
+- Enter extracted folder
+
+- Copy bootstrap.cmake (can be found on AL_DIR/modules/templates/boostrap.cmake.tmpl)
+
+- Edit CMakeLists.txt and type just under project(YARP)
+
+  - include('${CMAKE_CURRENT_SOURCE_DIR}/boostrap.cmake')
+
+- Create a build folder
+
+- Enter folder build
+
+- Execute: cmake -D CMAKE_TOOLCHAIN_FILE=<path-to-naoqi-ctc>/toolchain-geode.cmake ..
+  (error might occur, ignore them!)
+
+- Execute: ccmake .
+
+  - Set ACE_INCLUDE_DIR (should be <full_path_to_ACE_root>/include)
+
+  - Set ACE_LIBRARY (should be <full_path_to_ACE_root>/lib/libACE.so)
+
+
+- Execute make
+
+- Copy lib/* to nao ~/naoqi/lib folder
+  - Execute: scp lib/* nao@<...>:~/naoqi/lib
+
+  
+
+
+
+
+
+
+
+
+
 BUILD (for remote execution)
 
 - Create a folder named build 
@@ -20,7 +97,8 @@ BUILD (for remote execution)
 
 - Press c to configure again, then g to generate and exit. 
 
-- Execute: make -jk install, where k is the number of cores in your system.
+- Execute: make -jk, where k is the number of cores in your system.
+
 
 
 
@@ -49,7 +127,9 @@ CROSSBUILD (for on-board execution)
 
 - Press c to configure again, then g to generate and exit. 
 
-- Execute: make -jk install, where k is the number of cores in your system. 
+- Execute: make -jk, where k is the number of cores in your system. 
+
+
 
 
 Documentation
