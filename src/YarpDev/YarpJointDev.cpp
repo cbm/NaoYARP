@@ -156,6 +156,12 @@ bool YarpJointDev::relativeMove ( const double* deltas ) {
 
 
 
+inline double myMax ( double i, double j ) {
+    return i > j ? i : j;
+}
+
+
+
 bool YarpJointDev::setRefSpeed ( int j, double sp ) {
 
     try {
@@ -165,13 +171,7 @@ bool YarpJointDev::setRefSpeed ( int j, double sp ) {
         return false;
     }
 
-    _maxRefSpeed = *std::max_element ( _refSpeeds.begin(), _refSpeeds.end(),
-
-    * ( [] ( double i, double j ) {
-        return i > j ? i : j;
-    }
-
-                                         ) );
+    _maxRefSpeed = *std::max_element ( _refSpeeds.begin(), _refSpeeds.end(), myMax );
 
     return true;
 }
