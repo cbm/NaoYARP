@@ -16,7 +16,7 @@ Cross-Compilation procedure (only for on-board execution)
 
 - Source cross compilation script to set CPP flags appropriately
 
-  - Execute: "source cross-compile.sh"
+  - Execute: "source cross-compile.sh <path_to_naoqi_cross>"
 
 - Enter ACE directory
 
