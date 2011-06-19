@@ -115,6 +115,7 @@ double YarpCam::getSharpness() {
 bool YarpCam::getWhiteBalance ( double& blue, double& red ) {
     _camera->GetCamProp ( NaoCam::yCameraBlueChromaID, blue );
     _camera->GetCamProp ( NaoCam::yCameraRedChromaID, red );
+    return true;
 }
 
 
