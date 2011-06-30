@@ -68,7 +68,7 @@ public:
             rename( (MsgLogFile + ".0").c_str() , (MsgLogFile + ".1").c_str() );
 
 
-        ErrorLog.open( ( +MsgLogFile+".0" ).c_str() );
+        ErrorLog.open( ( MsgLogFile+".0" ).c_str() );
         if ( ! ErrorLog.is_open() )
             std::cerr<<"Can't open MessageLog file: "<<MsgLogFile<<std::endl;
 

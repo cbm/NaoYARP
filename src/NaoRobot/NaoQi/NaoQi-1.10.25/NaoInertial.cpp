@@ -26,13 +26,23 @@
 
 #include <iostream>
 
+#include "Tools/logger.h"
+
 
 
 NaoInertial::NaoInertial() {
 
-    _memoryProxy =  ALBrokerWrapper::Instance().GetBroker()->getMemoryProxy();
+    try {
+        _memoryProxy =  ALBrokerWrapper::Instance().GetBroker()->getMemoryProxy();
+    }
+    catch ( AL::ALError& err ) {
+        Logger::Instance().WriteMsg ( "NaoInertial",
+                                      "Error in getting Memory proxy", Logger::FatalError );
+        Logger::Instance().WriteMsg ( "NaoInertial", err.toString(), Logger::FatalError );
+    }
 
     _accDevNameList.push_back ( "Device/SubDeviceList/InertialSensor/AccX/Sensor/Value" );
+
     _accDevNameList.push_back ( "Device/SubDeviceList/InertialSensor/AccY/Sensor/Value" );
     _accDevNameList.push_back ( "Device/SubDeviceList/InertialSensor/AccZ/Sensor/Value" );
 

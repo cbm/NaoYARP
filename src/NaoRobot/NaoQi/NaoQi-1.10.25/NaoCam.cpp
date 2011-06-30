@@ -25,15 +25,23 @@
 #include <alproxies/alvideodeviceproxy.h>
 #include <alvision/alvisiondefinitions.h>
 
+#include "Tools/logger.h"
+
 
 NaoCam::NaoCam() : _isConfigured ( false ),
         _gvmName ( "" ),
         _imgWidth ( -1 ),
         _imgHeight ( -1 ) {
 
-    _videoProxy = boost::shared_ptr<AL::ALVideoDeviceProxy> (
-                      new AL::ALVideoDeviceProxy (
-                          ALBrokerWrapper::Instance().GetBroker() ) );
+    try {
+        _videoProxy = boost::shared_ptr<AL::ALVideoDeviceProxy> (
+                          new AL::ALVideoDeviceProxy ( ALBrokerWrapper::Instance().GetBroker() ) );
+    }
+    catch ( AL::ALError& err ) {
+        Logger::Instance().WriteMsg ( "NaoCam",
+                                      "Error in getting VideoDevice proxy", Logger::FatalError );
+        Logger::Instance().WriteMsg ( "NaoCam", err.toString(), Logger::FatalError );
+    }
 
 }
 
@@ -264,27 +272,19 @@ bool NaoCam::ConvertFromNaoQi ( const CamParam in_param, const int& in_val, doub
     switch ( in_param ) {
 
     case yCameraBrightnessID:
-        out_val =  in_val / 255.0f;
-        break;
 
     case yCameraSaturationID:
+
+    case yCameraRedChromaID:
+
+    case yCameraBlueChromaID:
+
+    case yCameraGainID:
         out_val =  in_val / 255.0f;
         break;
 
     case yCameraHueID:
         out_val = ( in_val + 180 ) / 360.0f;
-        break;
-
-    case yCameraRedChromaID:
-        out_val =  in_val / 255.0f;
-        break;
-
-    case yCameraBlueChromaID:
-        out_val =  in_val / 255.0f;
-        break;
-
-    case yCameraGainID:
-        out_val =  in_val / 255.0f;
         break;
 
     case yCameraExposureID:

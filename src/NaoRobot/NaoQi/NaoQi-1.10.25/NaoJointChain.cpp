@@ -25,18 +25,26 @@
 #include <libalmotion/almotiondefinitions.h>
 #include <almath/almath.h>
 
-
+#include "Tools/logger.h"
 
 
 NaoJointChain::NaoJointChain ( std::string name ) : _chainName ( name ) {
 
-    _motion = ALBrokerWrapper::Instance().GetBroker()->getMotionProxy();
+    try {
+        _motion = ALBrokerWrapper::Instance().GetBroker()->getMotionProxy();
+    }
+    catch ( AL::ALError& err ) {
+        Logger::Instance().WriteMsg ( "NaoJointChain",
+                                      "Error in getting Motion proxy", Logger::FatalError );
+        Logger::Instance().WriteMsg ( "NaoJointChain", err.toString(), Logger::FatalError );
+    }
 
     _jointNames = _motion->getJointNames ( _chainName );
 
     std::vector<std::string>::const_iterator it;
+
     for ( it = _jointNames.begin(); it < _jointNames.end(); it++ )
-      _joints.push_back( boost::shared_ptr<NaoJoint> (new NaoJoint (*it) ) );
+        _joints.push_back ( boost::shared_ptr<NaoJoint> ( new NaoJoint ( *it ) ) );
 
 }
 
@@ -66,7 +74,7 @@ unsigned NaoJointChain::GetNumberOfJoints () {
 
 boost::shared_ptr<NaoJoint> NaoJointChain::GetSpecificJoint ( unsigned i ) {
 
-    return _joints.at(i);
+    return _joints.at ( i );
 
 }
 
@@ -152,14 +160,14 @@ void NaoJointChain::GotoPositionBlock ( std::vector<float>& pos, float t, bool i
 
 
 bool NaoJointChain::WaitForPostedMotions ( float timeout ) {
-  return false; ///TODO
+    return false; ///TODO
 }
 
 
 
 boost::shared_ptr<NaoJoint> NaoJointChain::operator[] ( unsigned i ) {
 
-  return this->GetSpecificJoint(i);
+    return this->GetSpecificJoint ( i );
 
 }
 

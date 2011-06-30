@@ -22,10 +22,20 @@
 #include <alcommon/alproxy.h>
 #include <alproxies/almotionproxy.h>
 
+#include "Tools/logger.h"
 
 
 NaoJoint::NaoJoint ( std::string name ) : _jointName ( name ) {
-    _motion = ALBrokerWrapper::Instance().GetBroker()->getMotionProxy();
+
+    try {
+        _motion = ALBrokerWrapper::Instance().GetBroker()->getMotionProxy();
+    }
+    catch ( AL::ALError& err ) {
+        Logger::Instance().WriteMsg ( "NaoJoint",
+                                      "Error in getting Motion proxy", Logger::FatalError );
+        Logger::Instance().WriteMsg ( "NaoJoint", err.toString(), Logger::FatalError );
+    }
+
 }
 
 
