@@ -244,7 +244,21 @@ bool YarpJointDev::getEncoders ( double* encs ) {
 
 //from impendance
 
-bool YarpJointDev::getImpedance ( int j, double* stiffness, double* damping, double* offset ) {
+bool YarpJointDev::getCurrentImpedanceLimit ( int j, double* min_stiff, double* max_stiff, 
+    										double* min_damp, double* max_damp ) {
+    										
+    *min_stiff = 0.0f;
+    *max_stiff = 1.0f;
+    *min_damp = 0.0f;
+    *max_damp = 0.0f;
+    
+    return true;
+    										
+}
+
+
+
+bool YarpJointDev::getImpedance ( int j, double* stiffness, double* damping  ) {
 
     if ( j < 0 || ( unsigned int ) j >= _chain->GetNumberOfJoints() )
         return false;
@@ -253,14 +267,12 @@ bool YarpJointDev::getImpedance ( int j, double* stiffness, double* damping, dou
 
     *damping = 0.0f; ///Not implemented - just set to zero;
 
-    *offset = 0.0f;  ///Not implemented - just set to zero;
-
     return true;
 }
 
 
 
-bool YarpJointDev::setImpedance ( int j, double stiffness, double damping, double offset ) {
+bool YarpJointDev::setImpedance ( int j, double stiffness, double  ) {
 
     if ( j < 0 || ( unsigned int ) j >= _chain->GetNumberOfJoints() )
         return false;

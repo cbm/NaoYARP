@@ -526,6 +526,24 @@ public:
 
 
     /**
+     * Get the current impedandance limits for a specific joint.
+     *
+     * @note Damping and offset parameters are not implemented for Nao.
+     *
+     * @param j joint number.
+     * @param min_stiff pointer to store min stiffness value. (not really used, set to  0)
+     * @param max_stiff pointer to store max stiffness value (not really used, set to 1).
+     * @param min_damp pointer to store damping value (not used, set to  0).
+     * @param max_damp pointer to store damping value (not used, set to 0).
+     * @return true on success, otherwise false.
+     */
+
+    virtual bool getCurrentImpedanceLimit ( int j, double* min_stiff, double* max_stiff,
+    										double* min_damp, double* max_damp );
+
+
+
+    /**
      * Get current impedance gains (stiffness,damping,offset) for a specific joint.
      *
      * @note Damping and offset parameters are not implemented for Nao.
@@ -537,7 +555,7 @@ public:
      * @return true on success, otherwise false.
      */
 
-    virtual bool getImpedance ( int j, double* stiffness, double* damping, double* offset );
+    virtual bool getImpedance ( int j, double* stiffness, double* damping );
 
 
 
@@ -569,7 +587,7 @@ public:
      * @return true on success, otherwise false.
      */
 
-    virtual bool setImpedance ( int j, double stiffness, double damping, double offset );
+    virtual bool setImpedance ( int j, double stiffness, double damping );
 
 
 
@@ -1145,6 +1163,24 @@ public:
      */
 
     virtual bool setRestWeights ( const yarp::sig::Vector& newRestWeights, yarp::sig::Vector& curRestWeights ) {
+        return false;
+    }
+
+
+
+    /**
+     * Set the reference velocities of the end-effector in the task space.
+     *
+     * Not implemented for Nao robot.
+     *
+     * @param xdot 	the 3-d vector containing the x,y,z reference velocities
+     *              [m/s] of the end-effector.
+     * @param odot 	the 4-d vector containing the orientation reference
+     *           velocity [rad/s] of the end-effector.
+     * @return always false.
+     */
+
+    virtual bool setTaskVelocities ( const yarp::sig::Vector& xdot, const yarp::sig::Vector& odot ) {
         return false;
     }
 
