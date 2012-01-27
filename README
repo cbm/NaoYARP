@@ -69,6 +69,31 @@ Cross-Compilation procedure (only for on-board execution)
 
   
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Building process for new  versions of NaoQi  ( >= 1.12 )
+
+-Install qiBuild 
+
+-Create and enter a directory
+
+-Initialize directory with qiBuild
+  -qiBuild init
+
+-Set up toolchain
+ -qiToolchain <...>
+
+-Create a wrapping project
+ -qiBuild create <pName>
+
+-configure the project
+-qiBuild configure <pName>
+
+-Checkout NaoYarp inside the new project
+
+-Copy-Paste CMakeLists.txt and main.cpp from NaoYARP/src/NaoRobot/NaoQi/NaoQi-<vession>/naoyarp_wrap
+  to root directory of project
+
+-Build project as usual.
 
 
 
@@ -76,6 +101,8 @@ Cross-Compilation procedure (only for on-board execution)
 
 
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Building process NaoQi's up to 1.10
 
 BUILD (for remote execution)
 
@@ -129,7 +156,7 @@ CROSSBUILD (for on-board execution)
 
 - Execute: make -jk, where k is the number of cores in your system. 
 
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 Documentation
