@@ -1,4 +1,15 @@
 ---------------------------------
+2012-5 How to Compile 
+NaoYarp with NaoQi 1.12 + qibuild
+---------------------------------
+qibuild configure -c naoqi−sdk NaoYarp
+qibuild make -c naoqi−sdk NaoYarp
+
+NOTE: [naoqi−sdk] is the sdk name set up beforehand. If you haven't done so try this:
+qibuild config −−wizard
+qitoolchain create naoqi−sdk ["PATH_TO_PYNAOQI_PYTHON"]
+qibuild init
+---------------------------------
 2012-5 Jie
 ---------------------------------
 * Created a branch for supporting previous NaoQi 1.10.

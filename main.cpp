@@ -37,14 +37,14 @@ extern "C"
 
         ALBrokerWrapper::Instance().SetBroker ( broker );
 
-        DeviceManager* dev = new DeviceManager;
+        //DeviceManager* dev = new DeviceManager;
 
         return 0;
     }
 
     ALCALL int _closeModule(  )
     {
-        delete dev;
+        //delete dev;
         return 0;
     }
 } // extern "C"
