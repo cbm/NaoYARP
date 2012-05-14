@@ -1,4 +1,4 @@
-<project name="NaoYarp">
+<project name="NaoYARP">
   <!-- Add your project dependencies here -->
   <!--
   <depends buildtime="true" runtime="true" names="foo" />

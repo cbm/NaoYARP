@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(NaoYarp)
+project(NaoYARP)
 set(NaoQiVersion "1.12" CACHE STRING "NaoQi Version is 1.12")
 option(NaoYARP_IS_REMOTE "NaoYARP_IS_REMOTE" ON)
 
