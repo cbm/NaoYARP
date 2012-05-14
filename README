@@ -1,5 +1,12 @@
-
-
+---------------------------------
+2012-5 Jie
+---------------------------------
+* Created a branch for supporting previous NaoQi 1.10.
+* The current master trunk supports the latest NaoQi only.
+* We might find a way to merge two branches in the future.
+---------------------------------
+Information Before 2012.01 
+---------------------------------
 Prerequisites:
 This project requires YARP and ACE libraries. For remote execution, they can be installed
 by binary or source as usual, depending on the computer architecture. 
@@ -89,7 +96,7 @@ Building process for new  versions of NaoQi  ( >= 1.12 )
 -qiBuild configure <pName>
 
 -Checkout NaoYarp inside the new project
-
+README
 -Copy-Paste CMakeLists.txt and main.cpp from NaoYARP/src/NaoRobot/NaoQi/NaoQi-<vession>/naoyarp_wrap
   to root directory of project
 
