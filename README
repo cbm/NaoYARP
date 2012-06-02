@@ -3,7 +3,7 @@
 NaoYarp with NaoQi 1.12 + qibuild
 ---------------------------------
 qibuild configure -c naoqi-sdk NaoYARP
-qibuild make -c naoqi−sdk NaoYARP
+qibuild make -c naoqi-sdk NaoYARP
 
 NOTE: [naoqi-sdk] is the sdk name set up beforehand. If you haven't done so try this:
 qibuild config --wizard
