@@ -301,7 +301,7 @@ bool YarpJointDev::getDOF ( yarp::sig::Vector& curDof ) {
 
 
 
-bool YarpJointDev::getPose ( yarp::sig::Vector& x, yarp::sig::Vector& od ) {
+bool YarpJointDev::getPose ( yarp::sig::Vector& x, yarp::sig::Vector& od, yarp::os::Stamp* stamp ) {
 
     std::vector<float> pos_or =  _chain->GetPotision();
 

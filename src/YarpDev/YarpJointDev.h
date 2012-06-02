@@ -855,10 +855,11 @@ public:
      * @param od a 4-d vector which is filled with the actual
      * orientation using axis-angle representation xa, ya, za, theta
      * (meters and radians).
-     * @return always false.
+     * @param stamp is ignored.
+     * @return true/false
      */
 
-    virtual bool getPose ( yarp::sig::Vector& x, yarp::sig::Vector& od );
+    virtual bool getPose ( yarp::sig::Vector& x, yarp::sig::Vector& od, yarp::os::Stamp *stamp=NULL);
 
 
 
@@ -877,7 +878,7 @@ public:
      * @return always false.
      */
 
-    virtual bool getPose ( const int axis, yarp::sig::Vector& x, yarp::sig::Vector& od ) {
+    virtual bool getPose ( const int axis, yarp::sig::Vector& x, yarp::sig::Vector& od, yarp::os::Stamp *stamp=NULL) {
         return false;
     }
 
