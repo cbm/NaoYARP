@@ -1367,7 +1367,36 @@ private:
     double _maxRefSpeed; //used for chain angle-space ctl.
     double _trajTime;
 
+    /**
+    * Returns useful info on the operating state of the controller.
+    * [wait for reply]
+    * @param info is a property-like bottle containing the info.
+    * @return always return false, FIXME!
+    */
+    virtual bool getInfo(yarp::os::Bottle &info){
+        return false;
+    }
 
+    /**
+    * Register an event.
+    * @param event the event to be registered.
+    * @return always return false, FIXME!
+    *
+    * @note the special type "*" can be used to attach a callback to
+    *       all the available events.
+    */
+    virtual bool registerEvent(yarp::dev::CartesianEvent &event){
+        return false;
+    }
+
+    /**
+    * Unregister an event.
+    * @param event the event to be unregistered.
+    * @return @return always return false, FIXME!.
+    */
+    virtual bool unregisterEvent(yarp::dev::CartesianEvent &event){
+        return false;
+    }
 };
 
 #endif // YARPJOINTDEV_H
